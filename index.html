@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Banner with normal text -->
+    <div class="banner">
+        <h1>📷 Webcam Photo App</h1>
+        <br>
+        <p>Tested on Windows 7 with Chrome Web Browser v107!</p>
+    </div>
+
+    <!-- Webcam container -->
+    <div class="container">
+        <div class="video-container">
+            <video id="webcam" autoplay></video>
+        </div>
+        <div class="buttons">
+            <button id="capture-btn">Capture Photo</button>
+            <button id="save-btn" style="display:none;">Save Photo</button>
+        </div>
+        <div class="output">
+            <canvas id="canvas" style="display:none;"></canvas>
+            <img id="photo" alt="Captured Photo">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
