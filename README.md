@@ -20,4 +20,4 @@ This version keeps everything clean, functional, responsive and user-friendly!
 Close other camera application before using this browser based webcam app
 
 ## Screenshot
-<img src="[https://github.com/chitkokooo/webcam/obj/screenshot.png](https://github.com/chitkokooo/webcam/blob/main/obj/screenshot.png)" alt="screenshot">
+<img src="https://github.com/chitkokooo/webcam/blob/main/obj/screenshot.png" alt="screenshot">
