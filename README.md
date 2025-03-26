@@ -12,9 +12,12 @@ Open `index.html` in a browser.
 
 Allow camera access when prompted.
 
-Click `Capture Photo` → `Save Photo` to test functionality.
+Click `Capture Photo` and `Save Photo` to test functionality.
 
 This version keeps everything clean, functional, responsive and user-friendly! 
 
 ## Caution
 Close other camera application before using this browser based webcam app
+
+## Screenshot
+<img src="[https://github.com/chitkokooo/webcam/obj/screenshot.png](https://github.com/chitkokooo/webcam/blob/main/obj/screenshot.png)" alt="screenshot">
