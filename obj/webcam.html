@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Webcam Application</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Webcam Application</h1>
+            <p> Tested successfully on in Windows 7 with Google Chrome v107.</p>
+            <div class="video-container">
+                <div class="video-box">
+                    <h2>Live View</h2>
+                    <video id="webcam" autoplay playsinline></video>
+                    <button id="capture-btn">Capture Image</button>
+                </div>
+                
+                <div class="video-box">
+                    <h2>Captured Image</h2>
+                    <canvas id="canvas"></canvas>
+                    <button id="save-btn" disabled>Save Image</button>
+                    <a id="download-link" style="display: none;"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Disclaimer: This Mini web application is designed to used for educational purpose only.</p>
+            <p>This app is created with <a href="https://www.deepseek.com/" target="_blank">DeepSeek AI</a> and you can check <a href="https://github.com/chitkokooo/webcam" target="_blank">Source Code</a> here.</p>
+        </div>
+    </body>
+</html>
+
+
+<style>
+   body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    p {
+        text-align: center;
+        color: #333;
+    }
+
+    .video-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .video-box {
+        flex: 1;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #fafafa;
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #444;
+        text-align: center;
+    }
+
+    video, canvas {
+        width: 100%;
+        background-color: #000;
+        display: block;
+        margin-bottom: 15px;
+        border-radius: 4px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+
+    #save-btn {
+        background-color: #2196F3;
+    }
+
+    #save-btn:hover:enabled {
+        background-color: #0b7dda;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    .footer p {
+        color: #a99c9c;
+    }
+
+    .footer p a {
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .video-container {
+            flex-direction: column;
+        }
+    }
+</style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get DOM elements
+        const video = document.getElementById('webcam');
+        const canvas = document.getElementById('canvas');
+        const captureBtn = document.getElementById('capture-btn');
+        const saveBtn = document.getElementById('save-btn');
+        const downloadLink = document.getElementById('download-link');
+        
+        // Set canvas size to match video
+        function setCanvasSize() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+        }
+        
+        // Access webcam
+        async function initWebcam() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 },
+                        facingMode: 'user' 
+                    }, 
+                    audio: false 
+                });
+                video.srcObject = stream;
+                
+                // When video starts playing, set canvas size
+                video.addEventListener('playing', () => {
+                    setCanvasSize();
+                });
+                
+            } catch (err) {
+                console.error("Error accessing webcam:", err);
+                alert("Could not access webcam. Please ensure you've granted camera permissions.");
+            }
+        }
+        
+        // Capture image from video
+        captureBtn.addEventListener('click', function() {
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            saveBtn.disabled = false;
+        });
+        
+        // Save captured image
+        saveBtn.addEventListener('click', function() {
+            const imageData = canvas.toDataURL('image/png');
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const filename = `webcam-capture-${timestamp}.png`;
+            
+            downloadLink.href = imageData;
+            downloadLink.download = filename;
+            downloadLink.click();
+        });
+        
+        // Initialize the app
+        initWebcam();
+    });
+</script>
