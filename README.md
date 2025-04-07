@@ -1,5 +1,5 @@
 # Simple Webcam App
-Simple Browser based webcam app for Windows 7 which does not included built-in Webcam Application
+Simple Web Browser based webcam app for Windows 7 which does not included built-in Webcam Application
 
 ## Requirements
 - Windows 7 and later
