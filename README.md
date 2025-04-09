@@ -3,7 +3,7 @@ Simple Web Browser based webcam app for Windows 7 which does not included built-
 
 ## Requirements
 - Windows 7 and later
-- Updated Web Browser (successfully tested with Google Chrome v107)
+- Updated Web Browser (successfully tested with Google Chrome version 107)
 
 ## User Guide:
 Save all three files (`index.html`, `styles.css`, `script.js`).
